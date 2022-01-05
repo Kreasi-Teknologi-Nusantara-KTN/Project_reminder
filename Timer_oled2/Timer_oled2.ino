@@ -11,10 +11,7 @@
 #define SCREEN_ADDRESS 0x3C ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-
 //2 menit dalam milisecond
-
-
 #define COUNTDOWN_TIME  3600000ul
 
 char
@@ -29,7 +26,10 @@ unsigned long
     timeElapsed,
     timeLeft;    
 
-
+int frequency=1000; //Specified in Hz
+int buzzPin=D4; //PIN
+int timeOn=1000; //specified in milliseconds
+int timeOff=1000; //specified in millisecods
 
 #if (SSD1306_LCDHEIGHT != 32)
 #error("Height incorrect, please fix Adafruit_SSD1306.h!");
@@ -131,6 +131,12 @@ void DoCountdown2()
         display.setCursor( 10, 10 );
         display.print( szString );
         display.display();
+
+        //buzzer
+        tone(buzzPin, frequency);
+        delay(timeOn);
+        noTone(buzzPin);
+        delay(timeOff);
          
     }//if
     else if( mins != lastmins )
