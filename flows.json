@@ -1,0 +1,129 @@
+[
+    {
+        "id": "c7fdc39e41d3d87c",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ebfb9ad047e8a082",
+        "type": "ui_button",
+        "z": "c7fdc39e41d3d87c",
+        "name": "",
+        "group": "7b98a28e4e0c9ab0",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "send 1",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "tes1/sub",
+        "topicType": "msg",
+        "x": 270,
+        "y": 80,
+        "wires": [
+            [
+                "1b95cc74b07a5b64"
+            ]
+        ]
+    },
+    {
+        "id": "1b95cc74b07a5b64",
+        "type": "mqtt out",
+        "z": "c7fdc39e41d3d87c",
+        "name": "",
+        "topic": "tes1/sub",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8fe847aaecdc159b",
+        "x": 250,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "9d82aef9cf60183d",
+        "type": "ui_button",
+        "z": "c7fdc39e41d3d87c",
+        "name": "",
+        "group": "7b98a28e4e0c9ab0",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "send 2",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "2",
+        "payloadType": "str",
+        "topic": "tes1/sub",
+        "topicType": "msg",
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "1b95cc74b07a5b64"
+            ]
+        ]
+    },
+    {
+        "id": "7b98a28e4e0c9ab0",
+        "type": "ui_group",
+        "name": "Home",
+        "tab": "76cadb1b9c962b0a",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8fe847aaecdc159b",
+        "type": "mqtt-broker",
+        "name": "mqtt",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "76cadb1b9c962b0a",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

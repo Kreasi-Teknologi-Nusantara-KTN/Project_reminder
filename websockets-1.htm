@@ -18,7 +18,7 @@
 
         console.log("Connected ");
         //mqtt.subscribe("sensor1");
-        message = new Paho.MQTT.Message("0");
+        message = new Paho.MQTT.Message("1");
         message.destinationName = "tes1/sub";
         mqtt.send(message);
       }
