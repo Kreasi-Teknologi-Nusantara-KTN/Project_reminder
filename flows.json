@@ -1,0 +1,38 @@
+[
+    {
+        "id": "957cee0a4c539d03",
+        "type": "ui_text",
+        "z": "dfdb2036.ae7008",
+        "group": "25257d51.78bd9a",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Waktu",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 990,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "25257d51.78bd9a",
+        "type": "ui_group",
+        "name": "Timer 1 jam",
+        "tab": "564a631a.2f096c",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "564a631a.2f096c",
+        "type": "ui_tab",
+        "name": "Timer",
+        "icon": "fa-clock-o",
+        "disabled": false,
+        "hidden": false
+    }
+]
