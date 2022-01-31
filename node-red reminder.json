@@ -1,0 +1,22 @@
+[
+    {
+        "id": "dc9f959d8c4be735",
+        "type": "function",
+        "z": "f934f77c78ca1d43",
+        "g": "785d5b5cb9adc904",
+        "name": "stop trigger",
+        "func": "if (msg.payload == 0){\n    msg.payload = \"0\";\n    return msg;\n    }",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 340,
+        "wires": [
+            [
+                "71ceabcce714e496"
+            ]
+        ]
+    }
+]
