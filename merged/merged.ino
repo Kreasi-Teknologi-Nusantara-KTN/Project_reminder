@@ -23,7 +23,7 @@ int c;
 char
     szString[20];
 byte
-    jam, mins;
+    jam, mins, secs;
         
 unsigned long
     timeTemp,
@@ -106,7 +106,7 @@ void reconnect() {
     if (client.connect(clientId.c_str())) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      client.publish("tes1/pub", "hello world");
+//      client.publish("tes1/pub", "hello world");
       // ... and resubscribe
       client.subscribe("tes1/sub");
     } else {
@@ -136,6 +136,8 @@ void setup()
     timeStart = millis();
     jam = 1;
     mins = 1;
+    secs = 1;
+
 
   
 }//setup
@@ -160,6 +162,7 @@ void DoCountdown1()
     timeTemp = timeLeft - (jam * 3600000ul);
     mins = (byte)(timeTemp / 60000ul);
     timeTemp = timeTemp - (mins * 60000ul);
+    secs = (byte) (timeTemp / 1000ul);
 
     if( jam == 0 && mins == 0 )
     {
@@ -177,17 +180,18 @@ void DoCountdown1()
         delay(timeOff);
          
     }//if
-    else if( mins != lastmins )
+    else if( secs != lastmins )
     {
         lastmins = mins;
         display.clearDisplay();
-        sprintf( szString, "%02d:%02d", jam, mins );
+        sprintf( szString, "%02d:%02d:%02d", jam, mins,secs );
         Serial.println( szString );
+        client.publish("tes1/pub", szString);
         //
         display.setCursor( 10, 10 );
         display.print( szString );
         display.display();
-
+        delay(1000);
         
     
     }//if
@@ -203,7 +207,7 @@ void DoCountdown2()
         lastmins = 1;
         
     timeNow = millis();
-    timeElapsed = timeNow - timeStart;
+//    timeElapsed = timeNow - timeStart;
     
     if(jam == 0 && mins == 0 )
         return;
@@ -214,6 +218,7 @@ void DoCountdown2()
     timeTemp = timeLeft - (jam * 3600000ul);
     mins = (byte)(timeTemp / 60000ul);
     timeTemp = timeTemp - (mins * 60000ul);
+    secs = (byte) (timeTemp / 1000ul);
 
     if( jam == 0 && mins == 0 )
     {
@@ -231,18 +236,21 @@ void DoCountdown2()
         delay(timeOff);
          
     }//if
-    else if( mins != lastmins )
+    else if( secs != lastmins )
     {
         lastmins = mins;
         display.clearDisplay();
-        sprintf( szString, "%02d:%02d", jam, mins );
+        sprintf( szString, "%02d:%02d:%02d", jam, mins,secs );
         Serial.println( szString );
         //
         display.setCursor( 10, 10 );
         display.print( szString );
         display.display();
+        delay(1000);
     
     }//if
+
+    
     
 }//DoCountdown
 
