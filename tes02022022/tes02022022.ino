@@ -65,21 +65,37 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("] ");
   
   String response;
+
+
   for (int i = 0; i < length; i++) {
        response += (char)payload[i];
-    
-     if ((char)payload[0] != '1') {
-      digitalWrite(buzzPin, HIGH);
-      } else{
-      tone(buzzPin, 200);
-      }
-     String waktu = String((char)payload[i]);
-     Serial.print(waktu);
-    }
+       
+//lcd oled
+        display.clearDisplay();
+//        sprintf( szString, "%02d", response );
+        Serial.println( szString );
+        display.setCursor( 10, 10 );
+        display.print( response );
+        display.display();
+
+
+  
+//  notifikasi buzzer   
+//    if (response != "timeout") {
+//        digitalWrite(buzzPin, HIGH);
+//        } else{
+//        tone(buzzPin, 200);
+//        delay(500);
+//        }
+  }
+
+
+//  notifikasi led
   if ( response == "timeout") {
           digitalWrite(D5, HIGH);
           digitalWrite(D6, LOW);
           digitalWrite(D7, LOW);
+          tone(buzzPin, 200);
     } 
     else if ( response == "start" ) {
           digitalWrite(D5, LOW);
@@ -91,10 +107,9 @@ void callback(char* topic, byte* payload, unsigned int length) {
           digitalWrite(D5, LOW);
           digitalWrite(D6, HIGH);
           digitalWrite(D7, LOW);
-    }else{
-  
-   
-  }
+    }else if (response == "selesai"){
+          digitalWrite(buzzPin, HIGH);
+    }else{}
  
   Serial.println();
  

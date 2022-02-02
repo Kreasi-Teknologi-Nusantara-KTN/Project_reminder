@@ -55,6 +55,8 @@ void setup_wifi() {
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
+  digitalWrite(BUILTIN_LED, LOW);
+  digitalWrite(buzzPin, HIGH);
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
@@ -62,16 +64,37 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print(topic);
   Serial.print("] ");
   for (int i = 0; i < length; i++) {
-//    char mqttpy = (char)payload[i];
-    Serial.print((char)payload[i]);
-    
      if ((char)payload[0] != '1') {
-      digitalWrite(BUILTIN_LED, HIGH); 
+//      digitalWrite(BUILTIN_LED, HIGH); 
       digitalWrite(buzzPin, HIGH);
+      
       } else{
-      digitalWrite(BUILTIN_LED, LOW);   
-      digitalWrite(buzzPin, LOW);
+//      digitalWrite(BUILTIN_LED, LOW);   
+      tone(buzzPin, 200);
+      
       }
+
+
+    String t = String((char)payload[i]);
+//    Serial.print(t);
+    String j = "00:00:00";
+    if ( t.equalsIgnoreCase(j)) {
+          digitalWrite(D5, HIGH);
+          digitalWrite(D6, LOW);
+          digitalWrite(D7, LOW);
+    } else if ( (char)payload[0] == '0' ) {
+          digitalWrite(D5, LOW);
+          digitalWrite(D6, LOW);
+          digitalWrite(D7, HIGH);
+          
+    }else if((char)payload[0] != '0'){
+          
+          digitalWrite(D5, LOW);
+          digitalWrite(D6, HIGH);
+          digitalWrite(D7, LOW);
+    }else{
+      
+    }
   }
  
   Serial.println();
@@ -104,13 +127,17 @@ void reconnect() {
 }
 
 void setup() {
-   digitalWrite(buzzPin, HIGH);
-   display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);
-    display.clearDisplay();
-    display.setTextSize(2);
-    display.setTextColor(WHITE);
-    pinMode(buzzPin, OUTPUT);
+  digitalWrite(buzzPin, HIGH);
+  display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);
+  display.clearDisplay();
+  display.setTextSize(2);
+  display.setTextColor(WHITE);
+  pinMode(buzzPin, OUTPUT);
   pinMode(BUILTIN_LED, OUTPUT);     // Initialize the BUILTIN_LED pin as an output
+
+  pinMode(D5, OUTPUT);
+  pinMode(D6, OUTPUT);
+  pinMode(D7, OUTPUT);
   Serial.begin(115200);
   setup_wifi();
   client.setServer(mqtt_server, 1883);
