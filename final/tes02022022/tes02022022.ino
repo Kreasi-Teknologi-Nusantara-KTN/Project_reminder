@@ -22,7 +22,7 @@ char szString[20];
 
 const char* ssid = "KTN";
 const char* password = "ktnmantab03";
-const char* mqtt_server = "test.mosquitto.org";
+const char* mqtt_server = "broker.emqx.io";
 
 int buzzPin = D4;
 
@@ -54,6 +54,10 @@ void setup_wifi() {
   Serial.println("");
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
+  display.clearDisplay();
+  display.setCursor( 10, 10 );
+  display.print("Terhubung");
+  display.display();
   Serial.println(WiFi.localIP());
   digitalWrite(BUILTIN_LED, LOW);
   digitalWrite(buzzPin, HIGH);
@@ -126,6 +130,10 @@ void reconnect() {
     // Attempt to connect
     if (client.connect(clientId.c_str())) {
       Serial.println("connected");
+      display.clearDisplay();
+      display.setCursor( 10, 10 );
+      display.print("Ready");
+      display.display();
       // Once connected, publish an announcement...
       client.publish("tes1/sub", "hello world");
       // ... and resubscribe
@@ -143,7 +151,8 @@ void reconnect() {
 void setup() {
   digitalWrite(buzzPin, HIGH);
   display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);
-  display.clearDisplay();
+  display.setCursor( 10, 10 );
+  display.display();
   display.setTextSize(2);
   display.setTextColor(WHITE);
   pinMode(buzzPin, OUTPUT);
