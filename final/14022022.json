@@ -8,42 +8,28 @@
         "env": []
     },
     {
-        "id": "785d5b5cb9adc904",
+        "id": "0b2d7c7b3679c9c1",
         "type": "group",
         "z": "f934f77c78ca1d43",
-        "name": "Node 1",
         "style": {
-            "stroke": "#0070c0",
+            "stroke": "#999999",
+            "stroke-opacity": "1",
+            "fill": "none",
+            "fill-opacity": "1",
             "label": true,
-            "label-position": "n"
+            "label-position": "nw",
+            "color": "#a4a4a4"
         },
         "nodes": [
-            "a697f6df3b48d012",
-            "e64e7316de7b1c3a",
-            "3cc0fac2530e36b2",
-            "5c85566b7b7ef976",
-            "b036bba92824178c",
-            "5eb2172020f08692",
-            "3b254ad0b7fe73c3",
-            "217c7ca1bf1fe0c1",
-            "dc9f959d8c4be735",
-            "9fed0216679ec598",
-            "71ceabcce714e496",
-            "44cce9beee311f89",
-            "8976237d2b59ceb3",
-            "3951e6970b87ebc8",
-            "33511e492e6a6d92",
-            "d27a0173ead6b57c",
-            "ab9db9242916d969",
-            "3942c911664da9e2",
-            "3481bc0a6f47b3fc",
-            "2f67904e25146562",
-            "8d65e8ed17e0daa2"
+            "a6c621e18dcabfd2",
+            "b93a197cddef327e",
+            "2c703af438f27223",
+            "a39d74594f52484a"
         ],
-        "x": 474,
-        "y": 39,
-        "w": 1152,
-        "h": 342
+        "x": 14,
+        "y": 79,
+        "w": 352,
+        "h": 122
     },
     {
         "id": "3788611f2d85d63d",
@@ -74,360 +60,9 @@
             "9f84052f6379e3c6"
         ],
         "x": 474,
-        "y": 399,
+        "y": 639,
         "w": 1152,
         "h": 342
-    },
-    {
-        "id": "0b2d7c7b3679c9c1",
-        "type": "group",
-        "z": "f934f77c78ca1d43",
-        "style": {
-            "stroke": "#999999",
-            "stroke-opacity": "1",
-            "fill": "none",
-            "fill-opacity": "1",
-            "label": true,
-            "label-position": "nw",
-            "color": "#a4a4a4"
-        },
-        "nodes": [
-            "a6c621e18dcabfd2",
-            "b93a197cddef327e",
-            "2c703af438f27223",
-            "a39d74594f52484a"
-        ],
-        "x": 14,
-        "y": 79,
-        "w": 352,
-        "h": 122
-    },
-    {
-        "id": "a697f6df3b48d012",
-        "type": "ui_button",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "",
-        "group": "10f37fc7e1b27d50",
-        "order": 5,
-        "width": 0,
-        "height": 0,
-        "passthru": false,
-        "label": "Reset",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "fa-clock-o",
-        "payload": "{ \"payload\": \"off\" }",
-        "payloadType": "str",
-        "topic": "",
-        "topicType": "str",
-        "x": 550,
-        "y": 200,
-        "wires": [
-            [
-                "b036bba92824178c"
-            ]
-        ]
-    },
-    {
-        "id": "e64e7316de7b1c3a",
-        "type": "function",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "detik ke menit",
-        "func": "var menit = (msg.payload /60);\nmsg.payload=menit;\n\n\n//msg.ui_control = {\"min\":0,\"max\":10, \"seg1\":0, \"seg2\":1}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1300,
-        "y": 200,
-        "wires": [
-            [
-                "3cc0fac2530e36b2"
-            ]
-        ]
-    },
-    {
-        "id": "3cc0fac2530e36b2",
-        "type": "ui_gauge",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "Countdown Timer",
-        "group": "10f37fc7e1b27d50",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "gtype": "donut",
-        "title": "Countdown",
-        "label": "Menit",
-        "format": "{{value | number:0}}",
-        "min": 0,
-        "max": "1",
-        "colors": [
-            "#ff2600",
-            "#e6e600",
-            "#00f900"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "className": "",
-        "x": 1510,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "5c85566b7b7ef976",
-        "type": "function",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "menit ke detik",
-        "func": "var detik = msg.payload.menit * 60;\n// msg.ui_control = {\"min\":0,\"max\":10, \"seg1\":0, \"seg2\":1}\nparseInt(detik);\n\nif(detik < 0){\n    detik = 0;\n}else{\nmsg.payload=\"{\\\"payload\\\": \\\"on\\\", \\\"timeout\\\":\" + detik + \", \\\"warning\\\": 30}\"\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 760,
-        "y": 100,
-        "wires": [
-            [
-                "b036bba92824178c"
-            ]
-        ]
-    },
-    {
-        "id": "b036bba92824178c",
-        "type": "mytimeout",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "pengaturan waktu",
-        "outtopic": "",
-        "outsafe": "start",
-        "outwarning": "",
-        "outunsafe": "timeout",
-        "warning": "",
-        "timer": "",
-        "debug": false,
-        "ndebug": true,
-        "ignoreCase": false,
-        "repeat": false,
-        "again": false,
-        "x": 930,
-        "y": 200,
-        "wires": [
-            [
-                "ab9db9242916d969",
-                "8976237d2b59ceb3"
-            ],
-            [
-                "3b254ad0b7fe73c3",
-                "e64e7316de7b1c3a",
-                "dc9f959d8c4be735",
-                "3942c911664da9e2"
-            ]
-        ]
-    },
-    {
-        "id": "5eb2172020f08692",
-        "type": "mqtt out",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "send time",
-        "topic": "devreminder/node1/pub",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "8fe847aaecdc159b",
-        "x": 1540,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "3b254ad0b7fe73c3",
-        "type": "function",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "send time",
-        "func": "// Hours\nvar Hours = ((msg.payload)/3600);\nHours = Math.floor(Hours);\n\n// Minutes\nvar Minutes = (msg.payload-(Hours*3600))/60;\nMinutes = Math.floor(Minutes);\n\n// Seconds\nvar Seconds = (msg.payload-(Hours*3600)-(Minutes*60));\n\n\n// Concatenate\nvar Time = ('0' +Hours).slice(-2)+':'+('0' +Minutes).slice(-2)+':'+('0' +Seconds +'  ').slice(-4);\n// var Time = (\"0\" +Hours).slice(-2)+\":\"+(\"0\" +Minutes).slice(-2)+\":\"+(\"0\" +Seconds).slice(-2);\nmsg.payload = Time;\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1280,
-        "y": 240,
-        "wires": [
-            [
-                "217c7ca1bf1fe0c1",
-                "5eb2172020f08692"
-            ]
-        ]
-    },
-    {
-        "id": "217c7ca1bf1fe0c1",
-        "type": "ui_text",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "group": "10f37fc7e1b27d50",
-        "order": 3,
-        "width": "6",
-        "height": "1",
-        "name": "",
-        "label": "",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "className": "",
-        "x": 1530,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "dc9f959d8c4be735",
-        "type": "function",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "stop trigger",
-        "func": "if (msg.payload == 0){\n    msg.payload = \"selesai\";\n    return msg;\n    }\nelse if(msg.payload == 905){\n    msg.payload = \"half\";\n    return msg;\n}\n",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1110,
-        "y": 300,
-        "wires": [
-            [
-                "71ceabcce714e496"
-            ]
-        ]
-    },
-    {
-        "id": "9fed0216679ec598",
-        "type": "mqtt out",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "send stop triger ",
-        "topic": "devreminder/node1/pub",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "8fe847aaecdc159b",
-        "x": 1280,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "71ceabcce714e496",
-        "type": "delay",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 1120,
-        "y": 340,
-        "wires": [
-            [
-                "9fed0216679ec598"
-            ]
-        ]
-    },
-    {
-        "id": "44cce9beee311f89",
-        "type": "debug",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1510,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "8976237d2b59ceb3",
-        "type": "mqtt out",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "notification",
-        "topic": "devreminder/node1/pub",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "8fe847aaecdc159b",
-        "x": 1130,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "3951e6970b87ebc8",
-        "type": "ui_form",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "",
-        "label": "Set Waktu",
-        "group": "10f37fc7e1b27d50",
-        "order": 4,
-        "width": 0,
-        "height": 0,
-        "options": [
-            {
-                "label": "Menit",
-                "value": "menit",
-                "type": "number",
-                "required": true,
-                "rows": null
-            }
-        ],
-        "formValue": {
-            "menit": ""
-        },
-        "payload": "",
-        "submit": "submit",
-        "cancel": "cancel",
-        "topic": "topic",
-        "topicType": "msg",
-        "splitLayout": "",
-        "className": "inputNumber",
-        "x": 570,
-        "y": 100,
-        "wires": [
-            [
-                "5c85566b7b7ef976"
-            ]
-        ]
     },
     {
         "id": "960f50a7c5689bc4",
@@ -451,7 +86,7 @@
         "topic": "",
         "topicType": "str",
         "x": 550,
-        "y": 560,
+        "y": 800,
         "wires": [
             [
                 "78d0a02a0b217e1d"
@@ -471,7 +106,7 @@
         "finalize": "",
         "libs": [],
         "x": 1300,
-        "y": 560,
+        "y": 800,
         "wires": [
             [
                 "7c6831be4024ee7e"
@@ -503,7 +138,7 @@
         "seg2": "",
         "className": "",
         "x": 1510,
-        "y": 520,
+        "y": 760,
         "wires": []
     },
     {
@@ -519,7 +154,7 @@
         "finalize": "",
         "libs": [],
         "x": 760,
-        "y": 460,
+        "y": 700,
         "wires": [
             [
                 "78d0a02a0b217e1d"
@@ -544,7 +179,7 @@
         "repeat": false,
         "again": false,
         "x": 930,
-        "y": 560,
+        "y": 800,
         "wires": [
             [
                 "c2191f6ba6187e1a",
@@ -573,7 +208,7 @@
         "expiry": "",
         "broker": "8fe847aaecdc159b",
         "x": 1540,
-        "y": 620,
+        "y": 860,
         "wires": []
     },
     {
@@ -589,7 +224,7 @@
         "finalize": "",
         "libs": [],
         "x": 1280,
-        "y": 600,
+        "y": 840,
         "wires": [
             [
                 "51abb8fc88b43428",
@@ -612,7 +247,7 @@
         "layout": "col-center",
         "className": "",
         "x": 1530,
-        "y": 580,
+        "y": 820,
         "wires": []
     },
     {
@@ -628,7 +263,7 @@
         "finalize": "",
         "libs": [],
         "x": 1110,
-        "y": 660,
+        "y": 900,
         "wires": [
             [
                 "0fa4d70a2921fdaa"
@@ -651,7 +286,7 @@
         "expiry": "",
         "broker": "8fe847aaecdc159b",
         "x": 1280,
-        "y": 700,
+        "y": 940,
         "wires": []
     },
     {
@@ -673,7 +308,7 @@
         "allowrate": false,
         "outputs": 1,
         "x": 1120,
-        "y": 700,
+        "y": 940,
         "wires": [
             [
                 "35a6dafebb28bfa9"
@@ -695,7 +330,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1150,
-        "y": 460,
+        "y": 700,
         "wires": []
     },
     {
@@ -714,7 +349,7 @@
         "expiry": "",
         "broker": "8fe847aaecdc159b",
         "x": 1350,
-        "y": 440,
+        "y": 680,
         "wires": []
     },
     {
@@ -748,7 +383,7 @@
         "splitLayout": "",
         "className": "inputNumber",
         "x": 570,
-        "y": 460,
+        "y": 700,
         "wires": [
             [
                 "c147bc86fff844c9"
@@ -844,23 +479,6 @@
         ]
     },
     {
-        "id": "33511e492e6a6d92",
-        "type": "link in",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "node1link",
-        "links": [
-            "2c703af438f27223"
-        ],
-        "x": 585,
-        "y": 160,
-        "wires": [
-            [
-                "5c85566b7b7ef976"
-            ]
-        ]
-    },
-    {
         "id": "a89c60b821d1388e",
         "type": "link in",
         "z": "f934f77c78ca1d43",
@@ -870,27 +488,10 @@
             "2c703af438f27223"
         ],
         "x": 565,
-        "y": 520,
+        "y": 760,
         "wires": [
             [
                 "c147bc86fff844c9"
-            ]
-        ]
-    },
-    {
-        "id": "d27a0173ead6b57c",
-        "type": "link in",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "resetnode1link",
-        "links": [
-            "a39d74594f52484a"
-        ],
-        "x": 735,
-        "y": 240,
-        "wires": [
-            [
-                "b036bba92824178c"
             ]
         ]
     },
@@ -904,7 +505,7 @@
             "a39d74594f52484a"
         ],
         "x": 755,
-        "y": 600,
+        "y": 840,
         "wires": [
             [
                 "78d0a02a0b217e1d"
@@ -942,27 +543,405 @@
         "wires": []
     },
     {
+        "id": "64cc34bb2a5c701c",
+        "type": "ui_switch",
+        "z": "f934f77c78ca1d43",
+        "name": "",
+        "label": "Peringatan",
+        "tooltip": "",
+        "group": "10f37fc7e1b27d50",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "warning",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "off",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 1170,
+        "y": 440,
+        "wires": [
+            [
+                "5da913237604ee3d",
+                "4e0fb2e3a416cbac"
+            ]
+        ]
+    },
+    {
+        "id": "a697f6df3b48d012",
+        "type": "ui_button",
+        "z": "f934f77c78ca1d43",
+        "name": "",
+        "group": "10f37fc7e1b27d50",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fa-clock-o",
+        "payload": "{ \"payload\": \"off\" }",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 530,
+        "y": 240,
+        "wires": [
+            [
+                "b036bba92824178c"
+            ]
+        ]
+    },
+    {
+        "id": "e64e7316de7b1c3a",
+        "type": "function",
+        "z": "f934f77c78ca1d43",
+        "name": "detik ke menit",
+        "func": "var menit = (msg.payload /60);\nmsg.payload=menit;\n\n\n//msg.ui_control = {\"min\":0,\"max\":10, \"seg1\":0, \"seg2\":1}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1280,
+        "y": 240,
+        "wires": [
+            [
+                "3cc0fac2530e36b2"
+            ]
+        ]
+    },
+    {
+        "id": "3cc0fac2530e36b2",
+        "type": "ui_gauge",
+        "z": "f934f77c78ca1d43",
+        "name": "Countdown Timer",
+        "group": "10f37fc7e1b27d50",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "Countdown",
+        "label": "Menit",
+        "format": "{{value | number:0}}",
+        "min": 0,
+        "max": "1",
+        "colors": [
+            "#ff2600",
+            "#e6e600",
+            "#00f900"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 1490,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "5c85566b7b7ef976",
+        "type": "function",
+        "z": "f934f77c78ca1d43",
+        "name": "menit ke detik",
+        "func": "var detik = msg.payload.menit * 60;\n// msg.ui_control = {\"min\":0,\"max\":10, \"seg1\":0, \"seg2\":1}\nparseInt(detik);\n\nif(detik < 0){\n    detik = 0;\n}else{\nmsg.payload=\"{\\\"payload\\\": \\\"on\\\", \\\"timeout\\\":\" + detik + \", \\\"warning\\\": 30}\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 140,
+        "wires": [
+            [
+                "b036bba92824178c"
+            ]
+        ]
+    },
+    {
+        "id": "b036bba92824178c",
+        "type": "mytimeout",
+        "z": "f934f77c78ca1d43",
+        "name": "pengaturan waktu",
+        "outtopic": "",
+        "outsafe": "start",
+        "outwarning": "",
+        "outunsafe": "timeout",
+        "warning": "",
+        "timer": "",
+        "debug": false,
+        "ndebug": true,
+        "ignoreCase": false,
+        "repeat": false,
+        "again": false,
+        "x": 910,
+        "y": 240,
+        "wires": [
+            [
+                "ab9db9242916d969",
+                "8976237d2b59ceb3"
+            ],
+            [
+                "e64e7316de7b1c3a",
+                "3b254ad0b7fe73c3",
+                "dc9f959d8c4be735",
+                "3942c911664da9e2"
+            ]
+        ]
+    },
+    {
+        "id": "5eb2172020f08692",
+        "type": "mqtt out",
+        "z": "f934f77c78ca1d43",
+        "name": "send time",
+        "topic": "devreminder/node1/pub",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8fe847aaecdc159b",
+        "x": 1520,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "3b254ad0b7fe73c3",
+        "type": "function",
+        "z": "f934f77c78ca1d43",
+        "name": "send time",
+        "func": "// Hours\nvar Hours = ((msg.payload)/3600);\nHours = Math.floor(Hours);\n\n// Minutes\nvar Minutes = (msg.payload-(Hours*3600))/60;\nMinutes = Math.floor(Minutes);\n\n// Seconds\nvar Seconds = (msg.payload-(Hours*3600)-(Minutes*60));\n\n\n// Concatenate\nvar Time = ('0' +Hours).slice(-2)+':'+('0' +Minutes).slice(-2)+':'+('0' +Seconds +'  ').slice(-4);\n// var Time = (\"0\" +Hours).slice(-2)+\":\"+(\"0\" +Minutes).slice(-2)+\":\"+(\"0\" +Seconds).slice(-2);\nmsg.payload = Time;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1260,
+        "y": 280,
+        "wires": [
+            [
+                "5eb2172020f08692",
+                "217c7ca1bf1fe0c1"
+            ]
+        ]
+    },
+    {
+        "id": "217c7ca1bf1fe0c1",
+        "type": "ui_text",
+        "z": "f934f77c78ca1d43",
+        "group": "10f37fc7e1b27d50",
+        "order": 3,
+        "width": "6",
+        "height": "1",
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "x": 1510,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "dc9f959d8c4be735",
+        "type": "function",
+        "z": "f934f77c78ca1d43",
+        "name": "stop trigger",
+        "func": "if (msg.payload == 0){\n    msg.payload = \"selesai\";\n    return msg;\n    }\nelse if(msg.payload == 905){\n    msg.payload = \"half\";\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1090,
+        "y": 340,
+        "wires": [
+            [
+                "71ceabcce714e496"
+            ]
+        ]
+    },
+    {
+        "id": "9fed0216679ec598",
+        "type": "mqtt out",
+        "z": "f934f77c78ca1d43",
+        "name": "send stop triger ",
+        "topic": "devreminder/node1/pub",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8fe847aaecdc159b",
+        "x": 1260,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "71ceabcce714e496",
+        "type": "delay",
+        "z": "f934f77c78ca1d43",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1100,
+        "y": 380,
+        "wires": [
+            [
+                "9fed0216679ec598"
+            ]
+        ]
+    },
+    {
+        "id": "44cce9beee311f89",
+        "type": "debug",
+        "z": "f934f77c78ca1d43",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1490,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "8976237d2b59ceb3",
+        "type": "mqtt out",
+        "z": "f934f77c78ca1d43",
+        "name": "notification",
+        "topic": "devreminder/node1/pub",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8fe847aaecdc159b",
+        "x": 1110,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "3951e6970b87ebc8",
+        "type": "ui_form",
+        "z": "f934f77c78ca1d43",
+        "name": "",
+        "label": "Set Waktu",
+        "group": "10f37fc7e1b27d50",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Menit",
+                "value": "menit",
+                "type": "number",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "menit": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "inputNumber",
+        "x": 550,
+        "y": 140,
+        "wires": [
+            [
+                "5c85566b7b7ef976"
+            ]
+        ]
+    },
+    {
+        "id": "33511e492e6a6d92",
+        "type": "link in",
+        "z": "f934f77c78ca1d43",
+        "name": "node1link",
+        "links": [
+            "2c703af438f27223"
+        ],
+        "x": 565,
+        "y": 200,
+        "wires": [
+            [
+                "5c85566b7b7ef976"
+            ]
+        ]
+    },
+    {
+        "id": "d27a0173ead6b57c",
+        "type": "link in",
+        "z": "f934f77c78ca1d43",
+        "name": "resetnode1link",
+        "links": [
+            "a39d74594f52484a"
+        ],
+        "x": 715,
+        "y": 280,
+        "wires": [
+            [
+                "b036bba92824178c"
+            ]
+        ]
+    },
+    {
         "id": "ab9db9242916d969",
         "type": "debug",
         "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1080,
-        "y": 120,
+        "x": 1060,
+        "y": 160,
         "wires": []
     },
     {
         "id": "3942c911664da9e2",
         "type": "function",
         "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
         "name": "LED",
         "func": "if (msg.payload == 0){\n    msg.payload = false;\n    return msg;\n}else{\n    msg.payload = true;\n    return msg;\n}",
         "outputs": 1,
@@ -970,8 +949,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1090,
-        "y": 260,
+        "x": 1070,
+        "y": 300,
         "wires": [
             [
                 "3481bc0a6f47b3fc"
@@ -982,7 +961,6 @@
         "id": "3481bc0a6f47b3fc",
         "type": "ui_led",
         "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
         "order": 1,
         "group": "10f37fc7e1b27d50",
         "width": 0,
@@ -1006,155 +984,50 @@
         "shape": "circle",
         "showGlow": false,
         "name": "",
-        "x": 1350,
-        "y": 280,
+        "x": 1330,
+        "y": 320,
         "wires": []
     },
     {
-        "id": "2f67904e25146562",
-        "type": "ui_switch",
+        "id": "5da913237604ee3d",
+        "type": "mqtt out",
         "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "",
-        "label": "switch",
-        "tooltip": "",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "topic",
-        "topicType": "msg",
-        "style": "",
-        "onvalue": true,
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": false,
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "",
-        "animate": false,
-        "className": "",
-        "x": 1300,
-        "y": 120,
-        "wires": [
-            []
-        ]
+        "name": "send stop triger ",
+        "topic": "devreminder/node1/pub",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8fe847aaecdc159b",
+        "x": 1360,
+        "y": 460,
+        "wires": []
     },
     {
-        "id": "8d65e8ed17e0daa2",
-        "type": "switch",
-        "z": "f934f77c78ca1d43",
-        "g": "785d5b5cb9adc904",
-        "name": "",
-        "property": "enable",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 900,
-        "y": 300,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "64cc34bb2a5c701c",
-        "type": "ui_switch",
+        "id": "4e0fb2e3a416cbac",
+        "type": "debug",
         "z": "f934f77c78ca1d43",
         "name": "",
-        "label": "switch",
-        "tooltip": "",
-        "group": "298a6214.c57fde",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "",
-        "style": "",
-        "onvalue": "true",
-        "onvalueType": "bool",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "false",
-        "offvalueType": "bool",
-        "officon": "",
-        "offcolor": "",
-        "x": 1730,
-        "y": 300,
-        "wires": [
-            []
-        ]
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1500,
+        "y": 420,
+        "wires": []
     },
     {
-        "id": "f8cc5b286dc6acaf",
-        "type": "change",
-        "z": "f934f77c78ca1d43",
-        "name": "Enable",
-        "rules": [
-            {
-                "t": "set",
-                "p": "enabled",
-                "pt": "msg",
-                "to": "true",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1480,
-        "y": 300,
-        "wires": [
-            [
-                "64cc34bb2a5c701c"
-            ]
-        ]
-    },
-    {
-        "id": "ba7b4b570f1293cf",
-        "type": "change",
-        "z": "f934f77c78ca1d43",
-        "name": "Disable",
-        "rules": [
-            {
-                "t": "set",
-                "p": "enabled",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1480,
-        "y": 360,
-        "wires": [
-            [
-                "64cc34bb2a5c701c"
-            ]
-        ]
-    },
-    {
-        "id": "10f37fc7e1b27d50",
+        "id": "c0a2a6c8fc08b789",
         "type": "ui_group",
-        "name": "Node 1",
+        "name": "Node 2",
         "tab": "1fe844ae8607ac31",
-        "order": 1,
+        "order": 2,
         "disp": true,
         "width": "6",
         "collapse": false,
@@ -1187,17 +1060,6 @@
         "sessionExpiry": ""
     },
     {
-        "id": "c0a2a6c8fc08b789",
-        "type": "ui_group",
-        "name": "Node 2",
-        "tab": "1fe844ae8607ac31",
-        "order": 2,
-        "disp": true,
-        "width": "6",
-        "collapse": false,
-        "className": ""
-    },
-    {
         "id": "864d8920e81a455a",
         "type": "ui_group",
         "name": "universal input",
@@ -1209,14 +1071,15 @@
         "className": ""
     },
     {
-        "id": "298a6214.c57fde",
+        "id": "10f37fc7e1b27d50",
         "type": "ui_group",
-        "name": "A1",
-        "tab": "cf795f11.f1c7b",
+        "name": "Node 1",
+        "tab": "1fe844ae8607ac31",
         "order": 1,
         "disp": true,
         "width": "6",
-        "collapse": false
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "1fe844ae8607ac31",
@@ -1231,15 +1094,6 @@
         "type": "ui_tab",
         "name": "Universal ",
         "icon": "dashboard",
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "cf795f11.f1c7b",
-        "type": "ui_tab",
-        "name": "TEST",
-        "icon": "dashboard",
-        "order": 1,
         "disabled": false,
         "hidden": false
     }

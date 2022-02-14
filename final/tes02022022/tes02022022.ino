@@ -82,16 +82,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
         display.print( response );
         Serial.println(response);
         display.display();
-
-
-  
-//  notifikasi buzzer   
-//    if (response != "timeout") {
-//        digitalWrite(buzzPin, HIGH);
-//        } else{
-//        tone(buzzPin, 200);
-//        delay(500);
-//        }
   }
 
 
@@ -113,6 +103,14 @@ void callback(char* topic, byte* payload, unsigned int length) {
           digitalWrite(D6, HIGH);
           digitalWrite(D7, LOW);
     }else if (response == "selesai"){
+          digitalWrite(buzzPin, HIGH);
+    }else{}
+
+
+//buzzer warning  
+if ( response == "warning") {
+     tone(buzzPin, 200);
+    } else if ( response == "off" ) {
           digitalWrite(buzzPin, HIGH);
     }else{}
  
@@ -138,7 +136,7 @@ void reconnect() {
       // Once connected, publish an announcement...
       client.publish("tes1/sub", "hello world");
       // ... and resubscribe
-      client.subscribe("devreminder/node2/pub");
+      client.subscribe("devreminder/node1/pub");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
