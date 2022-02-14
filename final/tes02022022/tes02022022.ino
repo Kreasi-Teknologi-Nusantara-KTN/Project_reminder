@@ -80,6 +80,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
         Serial.println( szString );
         display.setCursor( 10, 10 );
         display.print( response );
+        Serial.println(response);
         display.display();
 
 
@@ -137,7 +138,7 @@ void reconnect() {
       // Once connected, publish an announcement...
       client.publish("tes1/sub", "hello world");
       // ... and resubscribe
-      client.subscribe("tes1/pub");
+      client.subscribe("devreminder/node2/pub");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
