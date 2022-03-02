@@ -36,7 +36,9 @@ int value = 0;
 //battery indicator
 int analogInPin  = A0;    // Analog input pin
 int sensorValue; 
+int  bat_percentage;
 float calibration = 0.36; // Check Battery voltage using multimeter & add/subtract the value
+float voltage;
 String batt_str;
 char batt[20];
 
@@ -213,5 +215,5 @@ void loop() {
     reconnect();
   }
   client.loop();
-  batteryIndicator()
+  batteryIndicator();
 }
