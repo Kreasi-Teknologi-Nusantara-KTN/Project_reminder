@@ -60,7 +60,7 @@ void setup_wifi() {
   display.display();
   Serial.println(WiFi.localIP());
   digitalWrite(BUILTIN_LED, LOW);
-  digitalWrite(buzzPin, HIGH);
+  digitalWrite(buzzPin, LOW);
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
@@ -103,7 +103,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
           digitalWrite(D6, HIGH);
           digitalWrite(D7, LOW);
     }else if (response == "selesai"){
-          digitalWrite(buzzPin, HIGH);
+          digitalWrite(buzzPin, LOW);
     }else{}
 
 
@@ -111,7 +111,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
 if ( response == "warning") {
      tone(buzzPin, 200);
     } else if ( response == "off" ) {
-          digitalWrite(buzzPin, HIGH);
+          digitalWrite(buzzPin, LOW);
     }else{}
  
   Serial.println();
@@ -136,7 +136,7 @@ void reconnect() {
       // Once connected, publish an announcement...
       client.publish("tes1/sub", "hello world");
       // ... and resubscribe
-      client.subscribe("devreminder/node1/pub");
+      client.subscribe("devreminder/node6/pub");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -148,7 +148,7 @@ void reconnect() {
 }
 
 void setup() {
-  digitalWrite(buzzPin, HIGH);
+  digitalWrite(buzzPin, LOW);
   display.begin(SSD1306_SWITCHCAPVCC, SCREEN_ADDRESS);
   display.setCursor( 10, 10 );
   display.display();
