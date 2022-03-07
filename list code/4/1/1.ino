@@ -147,12 +147,12 @@ void reconnect() {
       Serial.println("connected");
       display.clearDisplay();
       display.setCursor( 10, 10 );
-      display.print("No 1");
+      display.print("No 4");
       display.display();
 //      // Once connected, publish an announcement...
 //      client.publish("devreminder/node6/sub", "hello world");
       // ... and resubscribe
-      client.subscribe("devreminder/node1/pub");
+      client.subscribe("devreminder/node4/pub");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
@@ -172,7 +172,7 @@ void batteryIndicator(){
 
   batt_str = String(totalBatt);
   batt_str.toCharArray(batt, batt_str.length()+1);
-  client.publish("devreminder/node1/sub", batt); 
+  client.publish("devreminder/node4/sub", batt); 
 }
 
 void setup() {
