@@ -34,7 +34,7 @@ char szString[20];
 
 const char* ssid = "KTN";
 const char* password = "ktnmantab03";
-const char* mqtt_server = "broker.emqx.io";
+const char* mqtt_server = "broker.hivemq.com";
 
 int buzzPin = D4;
 
